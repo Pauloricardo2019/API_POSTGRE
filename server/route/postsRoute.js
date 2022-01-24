@@ -10,13 +10,18 @@ router.get('/posts/:id', async (req , res) => {
 
 });
 router.post('/posts', async (req , res) => {
-
+    const post = req.body;
+    const newPost = await postsService.savePost(post);
+    res.json(newPost);
 });
 router.put('/posts/:id', async (req , res) => {
-
+    const post = req.body;
+    await postsService.updatePost(req.params.id, post);
+    res.end();
 });
 router.delete('/posts/:id', async (req , res) => {
-
+    await postsService.deletePost(req.params.id);
+    res.end();
 });
 
 
